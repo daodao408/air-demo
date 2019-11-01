@@ -13,7 +13,7 @@
         "echarts-gl": "^1.1.1",
         "element-ui": "^2.4.8",
         "jquery": "^3.4.1",
-        "lodash": "^4.17.11",
+        "lodash": "^4.17.13",
         "vue": "^2.6.10",
         "vue-baidu-map": "^0.21.20",
         "vue-draggable-resizable": "^2.0.0-rc2",
