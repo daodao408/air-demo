@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <!--必要样式-->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/modernizr.custom.53451.js"></script>
+</head>
+
+<body class="mkeBody">
+    <div class="mkeContentBox">
+        <!--效果html开始-->
+        <section id="dg-container" class="dg-container">
+            <div class="dg-wrapper"></div>
+            <nav class="clearfloat">
+                <span class="dg-prev arrow-change-bth"></span>
+                <span class="dg-next arrow-change-bth"></span>
+            </nav>
+            <div class="gallery-active">
+                <ul class="clearfloat">
+                    <li class="gallery-line" index="0">
+                        <span></span>
+                    </li>
+                    <li class="gallery-line" index="1">
+                        <span></span>
+                    </li>
+                    <li class="gallery-line" index="2">
+                        <span></span>
+                    </li>
+                    <li class="gallery-line" index="3">
+                        <span></span>
+                    </li>
+                    <li class="gallery-line" index="4">
+                        <span></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.gallery.js"></script>
+        <script type="text/javascript">
+            let gallery;
+            $(function() {
+                let mapData = ['交通违法数据分析', '交通事故分析', '交通态势研判分析', '交通流量分析', '重点对象分析'];
+                reBuildContainer();
+                var index = mapData.indexOf(window.parent.headTitle) || 0;
+                initgallery(index);
+                $('.dg-prev').click(function() {
+                    setTimeout(function() {
+                        $($('.gallery-line').removeClass('actived')[gallery.current]).addClass('actived');
+                    }, 50);
+                });
+                $('.dg-next').click(function() {
+                    setTimeout(function() {
+                        $($('.gallery-line').removeClass('actived')[gallery.current]).addClass('actived');
+                    }, 50);
+                });
+                $('.gallery-line').click(function() {
+                    let index = parseInt(this.getAttribute('index'));
+                    $(this)
+                        .addClass('actived')
+                        .siblings('li')
+                        .removeClass('actived');
+                    reBuildContainer();
+                    initgallery(index);
+                });
+            });
+
+            function initgallery(index) {
+                gallery = $('#dg-container').gallery({
+                    current: index
+                });
+                $($('.gallery-line').removeClass('actived')[gallery.current]).addClass('actived');
+            }
+
+            function reBuildContainer() {
+                const template = ` 
+                    <a href="#"><img src="images/1.png" alt="image01" onclick="goToPage('/jtwfsjfxksh')" /> </a>
+                    <a href="#"><img src="images/2.png" alt="image02" onclick="goToPage('/jtkshxt')" /> </a>
+                    <a href="#"><img src="images/3.png" alt="image03" onclick="goToPage('/jttsypfxksh')" /> </a>
+                    <a href="#"><img src="images/4.png" alt="image04" onclick="goToPage('/jtllfxksh')" /> </a>
+                    <a href="#"><img src="images/5.png" alt="image05" onclick="goToPage('/zddxfxksh')" /> </a>
+                 `;
+                $('.dg-wrapper').html(template);
+            }
+
+            function goToPage(url) {
+                window.parent.location.replace(`${window.parent.location.origin}/#${url}`);
+            }
+        </script>
+        <!--效果html结束-->
+    </div>
+</body>
+
+</html>
